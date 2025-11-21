@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="upload-page">
+    <h2>Upload Road Damage Report</h2>
+    <p class="subtitle">Michigan locations only</p>
+
+    <form method="POST" enctype="multipart/form-data" class="upload-form">
+        <div class="form-group">
+            <label for="image">Road Image *</label>
+            <input type="file" id="image" name="image" accept="image/png,image/jpeg,image/jpg" required>
+            <small>Accepted formats: PNG, JPG, JPEG</small>
+        </div>
+
+        <div class="form-group">
+            <label for="area">Michigan Area *</label>
+            <select id="area" name="area" required>
+                <option value="">-- Select a Michigan city --</option>
+                {% for city in cities %}
+                <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="city">Specific City/Township (Optional)</label>
+            <input type="text" id="city" name="city" placeholder="Enter city or township name">
+        </div>
+
+        <div class="form-group">
+            <label for="address">Street Address or Description (Optional)</label>
+            <input type="text" id="address" name="address" placeholder="E.g., Main St near Oak Ave">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-large">Upload & Analyze</button>
+    </form>
+
+    <div class="upload-info">
+        <h3>📸 Tips for Best Results</h3>
+        <ul>
+            <li>Take photos in good lighting conditions</li>
+            <li>Ensure the crack or damage is clearly visible</li>
+            <li>Capture the damage from directly above if possible</li>
+            <li>Include surrounding context for location reference</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
