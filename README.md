@@ -1,37 +1,57 @@
 # Road Hawk - Michigan Road Damage Reporter
 
-A web application for reporting and analyzing road damage in Michigan using AI-powered image analysis via WatsonX.
+![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
+![Flask](https://img.shields.io/badge/flask-3.1+-green.svg)
+![WatsonX](https://img.shields.io/badge/WatsonX-AI-orange.svg)
 
-## Features
+**Project for IBM AI Hackathon 2025 using WatsonX**
 
-### User Portal
-- Upload road damage images with location information
-- Automatic AI analysis using WatsonX's `llama-3-2-90b-vision-instruct` model
-- Detect crack types: longitudinal crack, transverse crack, alligator crack, pothole
-- Repair priority classification: immediate, moderate, low, none
-- Michigan-only location restrictions
+A web application for reporting and analyzing road damage in Michigan using AI-powered image analysis via IBM WatsonX.ai
 
-### Admin Portal
-- View all damage reports in a sortable table
-- Filter reports by Michigan area/city
-- Sort by date, area, or repair priority
-- Access uploaded images
-- Password-protected access
+## 🎯 Overview
 
-## Installation
+Road Hawk is an intelligent road damage reporting system that enables Michigan residents to upload images of road damage and receive instant AI-powered analysis. The system automatically classifies crack types and determines repair priority levels, helping municipalities manage road maintenance more efficiently.
+
+## ✨ Features
+
+### 👤 User Portal
+- **Image Upload**: Upload road damage images with location information
+- **AI Analysis**: Automatic crack detection using WatsonX vision AI
+- **Crack Classification**: Detects 4 types of cracks:
+  - Longitudinal crack
+  - Transverse crack
+  - Alligator crack
+  - Pothole
+- **Repair Priority**: Classifies urgency levels:
+  - Immediate
+  - Moderate
+  - Low
+  - None
+- **Michigan-Only**: Location restricted to Michigan cities
+
+### 🔐 Admin Portal
+- **Dashboard**: View all damage reports in sortable tables
+- **Filtering**: Filter reports by Michigan area/city
+- **Sorting**: Sort by date, area, or repair priority
+- **Image Access**: View all uploaded road damage photos
+- **Password Protection**: Secure admin access
+
+## 🚀 Quick Start
 
 ### Prerequisites
 - Python 3.8 or higher
-- WatsonX API credentials (optional for testing - app includes mock mode)
+- pip (Python package manager)
+- WatsonX API credentials (optional - app includes mock mode for testing)
 
-### Setup Instructions
+### Installation
 
-1. **Navigate to the web directory**
-```powershell
-cd web
+1. **Clone the repository**
+```bash
+git clone https://github.com/SheliaRT/Road-Hawk.git
+cd Road-Hawk/web
 ```
 
-2. **Create and activate a virtual environment**
+2. **Create virtual environment**
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
@@ -42,21 +62,16 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-4. **Configure environment variables** (optional - app works in mock mode without these)
-
-For WatsonX integration:
+4. **Configure environment (optional)**
 ```powershell
-$env:WATSONX_API_KEY = "your-api-key-here"
-$env:WATSONX_URL = "https://your-watsonx-endpoint"
-```
+# For WatsonX AI integration
+$env:WATSONX_API_KEY = "your-api-key"
+$env:WATSONX_URL = "your-watsonx-endpoint"
 
-For admin access (default password is `adminpass`):
-```powershell
+# Admin password (default: adminpass)
 $env:ADMIN_PASSWORD = "your-secure-password"
-```
 
-Optional Flask secret key:
-```powershell
+# Flask secret key
 $env:FLASK_SECRET = "your-secret-key"
 ```
 
@@ -65,147 +80,109 @@ $env:FLASK_SECRET = "your-secret-key"
 python app.py
 ```
 
-6. **Access the application**
+6. **Access the app**
+Open browser: http://localhost:8000
 
-Open your browser and navigate to: `http://localhost:8000`
-
-## Usage
-
-### For Users
-
-1. Click **"Upload Road Image"** on the home page
-2. Select an image file (PNG, JPG, or JPEG)
-3. Choose your Michigan area from the dropdown
-4. Optionally add city and address details
-5. Click **"Upload & Analyze"**
-6. View the AI-generated analysis results
-
-### For Admins
-
-1. Click **"Admin Login"** on the home page
-2. Enter the admin password (default: `adminpass`)
-3. View all reports in the dashboard
-4. Use filters to sort by area or repair priority
-5. Click on image links to view uploaded photos
-
-## WatsonX Integration
-
-The application uses WatsonX's `llama-3-2-90b-vision-instruct` model for image analysis. 
-
-### Configuration
-
-Set these environment variables to enable WatsonX:
-- `WATSONX_API_KEY`: Your WatsonX API key
-- `WATSONX_URL`: Your WatsonX endpoint URL
-
-### Mock Mode
-
-If WatsonX credentials are not configured, the app runs in **mock mode** with simulated AI responses. This is useful for:
-- Local development and testing
-- UI/UX testing without API costs
-- Demonstrating the application
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-web/
-├── app.py                 # Main Flask application
-├── requirements.txt       # Python dependencies
-├── README.md             # This file
-├── reports.db            # SQLite database (created on first run)
-├── templates/            # HTML templates
-│   ├── base.html
-│   ├── index.html
-│   ├── upload.html
-│   ├── upload_result.html
-│   ├── admin_login.html
-│   └── admin_panel.html
-├── static/               # Static files
-│   └── style.css
-└── uploads/              # Uploaded images (created on first run)
+Road-Hawk/
+├── web/
+│   ├── app.py                 # Main Flask application
+│   ├── requirements.txt       # Python dependencies
+│   ├── README.md             # Detailed web app documentation
+│   ├── reports.db            # SQLite database (auto-created)
+│   ├── templates/            # HTML templates
+│   │   ├── base.html
+│   │   ├── index.html
+│   │   ├── upload.html
+│   │   ├── upload_result.html
+│   │   ├── admin_login.html
+│   │   └── admin_panel.html
+│   ├── static/               # CSS and static files
+│   │   └── style.css
+│   └── uploads/              # Uploaded images (auto-created)
+├── README.md                  # This file
+└── LICENSE
 ```
 
-## Database Schema
+## 🔧 Technology Stack
 
-SQLite database with a `reports` table:
+- **Backend**: Flask (Python web framework)
+- **Database**: SQLite
+- **AI/ML**: IBM WatsonX (`llama-3-2-90b-vision-instruct`)
+- **Frontend**: HTML5, CSS3, Jinja2 templates
+- **HTTP Client**: Requests library
+
+## 🧪 Testing
+
+The application includes a **mock mode** for testing without WatsonX credentials:
+- Simulated AI responses for development
+- No API costs during testing
+- Full UI/UX functionality
+
+To test:
+1. Run the app without setting WatsonX environment variables
+2. Upload any image - you'll get mock analysis results
+3. Test all features including admin panel
+
+## 🎨 Screenshots
+
+- **Home Page**: Choose between User and Admin portals
+- **Upload Page**: Select image, Michigan location, and submit
+- **Results Page**: View AI analysis with crack type and repair priority
+- **Admin Dashboard**: Filter, sort, and manage all reports
+
+## 🌍 Michigan Coverage
+
+Supported Michigan cities include:
+- Detroit, Grand Rapids, Warren, Sterling Heights
+- Lansing, Ann Arbor, Flint, Kalamazoo
+- Traverse City, Saginaw, Muskegon, Dearborn
+- And more...
+
+## 🔒 Security Notes
+
+⚠️ **For Production Deployment:**
+- Change default admin password
+- Set strong `FLASK_SECRET` key
+- Enable HTTPS/SSL
+- Add rate limiting
+- Implement CSRF protection
+- Add file size/type validation
+- Use production WSGI server (Gunicorn, uWSGI)
+- Consider PostgreSQL/MySQL for database
+
+## 📊 Database Schema
+
+**reports** table:
 - `id`: Primary key
 - `filename`: Uploaded image filename
 - `area`: Michigan city/area
-- `city`: Optional specific city
-- `address`: Optional street address
+- `city`: Specific city (optional)
+- `address`: Street address (optional)
 - `crack_type`: AI-detected crack type
-- `repair_level`: AI-determined repair priority
+- `repair_level`: Repair priority
 - `created_at`: Timestamp
 
-## Crack Types Detected
+## 🤝 Contributing
 
-1. **Longitudinal Crack**: Runs parallel to road centerline
-2. **Transverse Crack**: Runs perpendicular to road centerline
-3. **Alligator Crack**: Interconnected cracks forming alligator skin pattern
-4. **Pothole**: Bowl-shaped holes in road surface
+This project was created for the IBM AI Hackathon 2025. Contributions are welcome!
 
-## Repair Priority Levels
+## 📄 License
 
-1. **Immediate**: Urgent repair needed
-2. **Moderate**: Repair needed soon
-3. **Low**: Minor issue, can wait
-4. **None**: No repair needed
+See LICENSE file for details.
 
-## Michigan Cities Supported
+## 👥 Authors
 
-- Detroit
-- Grand Rapids
-- Warren
-- Sterling Heights
-- Lansing
-- Ann Arbor
-- Flint
-- Kalamazoo
-- Traverse City
-- Saginaw
-- Muskegon
-- Dearborn
-- Pontiac
-- Royal Oak
-- Battle Creek
-- Midland
-- Holland
-- Bay City
+- **SheliaRT** - Initial work - [GitHub](https://github.com/SheliaRT)
+- **Sima Ranjbari** -Initial work - [GitHub](https://github.com/Sima-Ranjbari)
 
-## Security Notes
+## 🙏 Acknowledgments
 
-⚠️ **For Production Use:**
-- Change the default admin password
-- Set a strong `FLASK_SECRET` key
-- Enable HTTPS
-- Add rate limiting
-- Implement CSRF protection
-- Add file size limits
-- Use a production WSGI server (e.g., Gunicorn, uWSGI)
-- Consider using a more robust database (PostgreSQL, MySQL)
+- IBM WatsonX for AI vision capabilities
+- IBM AI Hackathon 2025
+- Michigan Department of Transportation for inspiration
 
-## Troubleshooting
 
-### Import errors when running app
-Make sure you've activated the virtual environment and installed dependencies:
-```powershell
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
-
-### WatsonX API errors
-- Verify your API key and URL are correct
-- Check your WatsonX account has access to the vision model
-- Review the `analyze_image_with_watsonx()` function to ensure it matches your endpoint's schema
-
-### Can't access admin panel
-- Default password is `adminpass`
-- Set custom password via `ADMIN_PASSWORD` environment variable
-
-## License
-
-See LICENSE file in the root directory.
-
-## Contributing
-
-This is a demonstration project for Michigan road damage reporting. For production use, additional security and scalability measures are recommended.
+**Built with ❤️ for Michigan roads using IBM WatsonX AI**
