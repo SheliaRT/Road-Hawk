@@ -15,6 +15,7 @@ Road Hawk is an intelligent road damage reporting system that enables Michigan r
 ## ✨ Features
 
 ### 👤 User Portal
+Designed to be used by public.
 - **Image Upload**: Upload road damage images with location information
 - **AI Analysis**: Automatic crack detection using WatsonX vision AI
 - **Crack Classification**: Detects 4 types of cracks:
@@ -30,6 +31,7 @@ Road Hawk is an intelligent road damage reporting system that enables Michigan r
 - **Michigan-Only**: Location restricted to Michigan cities
 
 ### 🔐 Admin Portal
+Designed to used by authorities.
 - **Dashboard**: View all damage reports in sortable tables
 - **Filtering**: Filter reports by Michigan area/city
 - **Sorting**: Sort by date, area, or repair priority
